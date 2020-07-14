@@ -1,0 +1,23 @@
+        <p>
+            <a class="btn btn-success" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                Создать нового мастера
+            </a>
+        </p>
+        <div class="collapse" id="collapseExample">
+            <div class="card card-body">
+                <div class="alert alert-danger" role="alert" id='error_m' hidden>
+                    <div class='errors_floor' id='errors' >
+                        Возникли проблемы при отправке формы, проверьте введенные данные.
+                    </div>
+                </div>
+                Имя мастера<br>
+                <input class="form-control" id="nameMaster"><br> 
+                {% comment %}<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                {{ mastersform.name_m }}{% endcomment %}
+                Номер мастера<br>
+                {% comment %} {{mastersform.number_m}} {% endcomment %}
+                <input class="form-control" id="numberMaster">
+                <br><p><button class="btn btn-success getres" id='{{company.slug}}' onclick="return create_masters(this.id);">Создать</button></p>
+                <p>Нажимая на кнопку, вы даете согласие на обработку своих персональных данных. <a href="#" class="badge badge-light">Пользовательское соглашение</a></p>
+            </div>
+        </div>

@@ -1,0 +1,55 @@
+      #main {
+        display: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #fc0;
+        opacity: 0.6;
+      }
+      #okno {
+        width: 50wh;
+        height: 50vh;
+        text-align: center;
+        padding: 15px;
+        border: 3px solid #0000cc;
+        border-radius: 10px;
+        color: #0000cc;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        margin: auto;
+        opacity: 1;
+ 	    background: white; /* Цвет фона */
+      }
+      #main:target {display: block;}
+      .b-container{
+        width:200px;
+        height:150px;
+        background-color: #ccc;
+        margin:0px auto;
+        padding:10px;
+        font-size:30px;
+        color: #fff;
+    }
+    .b-popup{
+        width:100%;
+        height: 2000px;
+        background-color: rgba(0,0,0,0.5);
+        overflow:hidden;
+        position:fixed;
+        top:0px;
+    }
+    .b-popup .b-popup-content{
+        margin:40px auto 0px auto;
+        width:100px;
+        height: 40px;
+        padding:10px;
+        background-color: #c5c5c5;
+        border-radius:5px;
+        box-shadow: 0px 0px 10px #000;
+    }
+      

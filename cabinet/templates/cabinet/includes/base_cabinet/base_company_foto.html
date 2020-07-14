@@ -1,0 +1,15 @@
+<div class='row'>
+    <div class='col-1'></div>
+    <div class='col-10'>
+        <p>Редактирование основной информации</p>
+        <form method='POST' action="{url 'cabinet_company_url'}">
+            {% csrf_token %} {{ mastersform.as_p }} 
+            <input type="submit" value="Сохранить изменение" />
+        </form>
+        <p>Редактирование фотографий</p>
+        <form class='fotoform' id='name_company'>
+            {% csrf_token %} {{ fotoform }} <input type="submit" name="editfoto" value="Сохранить изменение" />
+        </form>
+    </div>
+    <div class='col-1'></div>
+</div>

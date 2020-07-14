@@ -1,0 +1,57 @@
+{% extends 'base_page.html' %}
+{% block body %}
+
+{% comment %} <div class="row no-gutters">
+    <div class='col'></div>
+    {% comment %} <div class='col-6 offset-md-2'> 
+    <div class='col-8'>
+    <div class="row no-gutters">
+        <div class='col-2 bg-info'></div>
+        <div class='col-8'>
+            <h3>Login Page </h3>
+        </div>
+        <div class='col-2 bg-info'></div>
+    </div>
+
+{%for e in form.non_field_errors%}
+    <div class="alert alert-danger">{{e}}</div>
+{%endfor%}
+<form class="form-horizontal" method="post" action="">
+    {% csrf_token %}
+    <fiedset>
+    {% for field in form %}
+        <div class="control-group {% if field.errors%}has-error{% endif %}">    
+            <label class="control-label">{{field.label}}</label>
+            <div class="controls">{{field}}</div>
+        </div>    
+    {% endfor %}
+    </fieldset>
+    <div class="form-actions">
+        <button type="submit" class="btn btn-primary">
+            Сохранить
+        </button>
+    </div>
+</form>  
+    <form action="" method="POST">
+        {% csrf_token %}
+        {% if error %}
+            {{ error }}
+        {% endif %}
+            {{ form.as_p }}
+        <input class="btn bg-success" style="color:white;" type="submit" name="submit" value="Войти"/>
+    </form> 
+ </div>
+ <div class='col'></div> {% endcomment %}
+<h1>Login Page </h1>
+
+<form action="" method="POST">
+{% csrf_token %}
+{% if error %}
+{{ error }}
+{% endif %}
+{{ form.as_p }}
+<input type="submit" name="submit" value="Log in"/>
+</form>
+{% endblock body %}
+{% block footer %}
+{% endblock footer %}

@@ -1,0 +1,12 @@
+{% extends "base_page.html" %}
+
+{% block body %}
+<div class='row'>
+  <div class='col-3 offset-md-1 mt-5'>
+    <h2><p>Logged out!</p></h2>
+    <a href="{% url 'administration_url'%}">Click here to login again.</a>
+  </div>
+</div>
+{% endblock %}
+{% block footer %}
+{% endblock footer %}

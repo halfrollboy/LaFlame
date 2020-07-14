@@ -1,0 +1,341 @@
+@charset "UTF-8";
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  font-family: Verdana, sans-serif;
+}
+
+.right-column {
+  width: 40vw;
+  display: inline-block;
+  height: 100%;
+  flex-shrink: 0;
+  margin: 0 5px;
+}
+
+.table-wrap{
+  width: 100%;
+  background-color: #edeef0;
+  position: relative;
+}
+
+.table-wrap .right-wrap{
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  overflow-x: auto;
+  overflow-y: hidden;
+  transition: all 0.3s ease-in-out;
+}
+
+.table-wrap .right-column{
+  background: white;
+  border-radius: 5px;
+  padding-bottom: 10px;
+  text-align: center;
+}
+
+.table-wrap .right-column .date-box{
+  border-radius: 0 0 10px 10px;
+  background-color: #e1e3e6;
+  padding: 5px;
+  text-align: center;
+  margin: 0 0 10px 0;
+  font-weight: normal;
+  font-size: 1.3vmax;
+}
+
+.table-wrap .right-column .date-append-box{
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border: 2px solid;
+  border-color: red;
+  width: 25vw;
+  background-color: yellow;
+}
+
+.table-wrap .description {
+  color: #fdfdfd;
+  background: rgba(0, 0, 0, 0.7);
+  top: 50%;
+  transform: translateY(-50%);
+  left: 0;
+  padding: 1em;
+  position: absolute;
+  z-index: 100;
+}
+
+.right-wrap::-webkit-scrollbar {
+  height: 10px;
+  background-color: #edeef0;
+}
+
+.right-wrap::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  background-color: #edeef0;
+}
+
+.right-wrap::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.3);
+  background-color: #999;
+}
+
+.form-input{
+  display: block;
+  width: 100%;
+  padding: 0 10px;
+  line-height: 40px;
+  font-family: Verdana, sans-serif;
+  background-color: transparent;
+}
+
+.form-input {
+  display: block;
+  width: 100%;
+  padding: 0 10px;
+  line-height: 40px;
+  font-family: 'Roboto', sans-serif;
+  background-color: white;
+  border: none;
+  border-radius: 3px;
+  border-bottom: 1px solid #999;
+  transition: all 0.2s ease;
+  text-align: center;
+}
+
+.form-label{
+  position: absolute;
+  left: 13px;
+  color: #9d959d;
+  font-size: 20px;
+  font-weight: 300;
+  transform: translateY(-35px);
+  transition: all 0.3s ease;
+  z-index: -1;
+}
+
+.form-input:focus {
+  outline: 0;
+  border-color: #F77A52;
+}
+
+.form-input:focus + .form-label, 
+.form-input:valid + .form-label {
+  transform: translateY(-30px);
+  opacity: 0;
+  font-size: 14px;
+  font-weight: 400;
+  outline: 0;
+  border-color: #F77A52;
+  color: rgb(27, 14, 9);
+}
+
+.table-wrap .right-column:hover + .table-wrap.right-column.date-box{
+  background-color: #F77A52;
+  color: black;
+}
+
+option{
+  border: 0px;
+  margin: 5px;
+  background-color: #F77A52;
+}
+
+select{
+  border: none;
+}
+
+
+/* скрываем все инпуты, чтобы все выглядело красиво */
+input
+{
+  display: none;
+}
+
+/* стилизуем стандартный текст лейбела(желательно смотреть этот стиль после .items) */
+
+#text
+{
+  position: absolute;
+  display: block;
+  top: 0;
+  padding-left: 10px;
+}
+
+/* Задаем параметры нашего селекта - ширину, высоту и line-height(для центрирования текста по вертикали;этот парметр меньше ширины на 4px, т.к. в нашем блоке есть border размером в 2px со всех сторон) */
+
+.select
+{
+  display: inline-block;
+  width: 160px;
+  height: 34px;
+  line-height: 30px;
+  position: relative;
+}
+
+/* Это наша стрелочка, показывающая, что селект можно раскрыть */
+
+.select:before
+{
+  content: ">";
+  display: inline-block;
+  background: white;
+  position: absolute;
+  right: -5px;
+  top: 2px;
+  z-index: 2;
+  width: 30px;
+  height: 26px;
+  text-align: center;
+  line-height: 26px;
+  border: none;
+  transform: rotate(90deg);
+  cursor: pointer;
+}
+
+/* Если ничего не выбрано, то наш изначальный текст черного цвета, как и должно быть */
+
+.select input[name="list"]:not(:checked) ~ #text
+{
+  color: black;
+  background: white;
+}
+
+/* Если же что-то выбрано, то наш текст становится невидимым и встает сверху выбранного параметра, чтобы при клике на него можно было заного открыть селект, что не было реализовано прошлым автором */
+
+.select input[name="list"]:checked ~ #text
+{
+  background: transparent;
+  color: transparent;
+  z-index: 2;
+}
+
+/* Стилизация выключенного селекта */
+
+#select:disabled ~ .items #text
+{
+  background: #eee;
+}
+
+/* Стилизация блока с опциями. min-height сделана для фикса высоты при абсолютном позиционировании, overflow же сделан для фиксированной высоты(см. ниже) */
+
+.items
+{
+  display: block;
+  min-height: 30px;
+  position: absolute;
+  border: 2px solid #ddd;
+  overflow: hidden;
+  width: 160px;
+  cursor: pointer;
+}
+
+/* Если наш селект закрыт, то он имеет высоту 30px(сделано для того, чтобы слишком большие надписи не растягивали его в высоту)  */
+
+#select:not(:checked) ~ .items
+{
+  height: 30px;
+}
+
+/* Все лейбелы(названия опций) изначально скрыты */
+
+.items label
+{
+  border-top: 2px solid #ddd;
+  display: none;
+  padding-left: 10px;
+  background: white;
+}
+
+/* Тут много объяснять не надо - просто выделение при наведении */
+
+.items label:hover
+{
+  background: #eee;
+  cursor: pointer;
+}
+
+/* Опять же фикс из-за абсолютного позиционирования */
+
+#select:checked ~ .items
+{
+  padding-top: 30px;
+}
+
+/* Если наш селект открыт, то надо сделать все опции видимыми */
+
+#select:checked ~ .items label
+{
+  display: block;
+}
+
+/* Если какая-либо опция была выбрана, то сделать ее видимой(при выборе селект автоматически закроется) */
+
+.items input:checked + label
+{
+  display: block!important;
+  border: none;
+  background: white;
+}
+
+/* При открытии селекта создать подложку во весь экран, при клике на которую селект закроется, а значение останется пустым. background сделан для наглядности */
+
+#select:checked ~ .bg
+{
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 0;
+  background: rgba(0,0,0,0.4);
+}
+
+/* https://freefrontend.com/css-select-boxes/
+https://codepen.io/radiantshaw/pen/oLdLRW */
+
+.box-date{
+  margin: 5px;
+  padding: 10px;
+  background-color: rgb(167, 167, 167);
+  align-content: center;
+  border-radius:10px;
+}
+
+/* 
+.button_box{
+  background-color;
+}
+*/
+
+.btn_select_menu{
+  margin-top: 5px;
+  margin-bottom: 5px;
+  background-color: rgb(77, 165, 77);
+  width: 100%;
+  height: 30px;
+  border: none;
+  color:rgb(255, 255, 255);
+  text-align: center;
+  border-radius: 7px;
+  font-family: 'Roboto', sans-serif;
+}
+
+
+.zap-block{
+  background-color: antiquewhite;
+  margin: 10px;
+  padding: 10px;
+  border-radius: 4px;
+}

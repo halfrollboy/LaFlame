@@ -1,0 +1,16 @@
+{% extends 'cabinet/base_cabinet.html' %}
+{% block cabinet_content %}
+<div class='row'>
+    <div class='col-1'></div>
+    <div class='col-10'>
+        <br>
+        {% include 'cabinet/includes/create_masters_form.html' %}
+        <div id='masters_plato'>
+            {% include 'cabinet/includes/delete_masters_form.html' %}
+        </div>
+        <div id='malco'>
+        </div>
+    </div>
+    <div class='col-1'></div>
+</div>
+{% endblock cabinet_content %}

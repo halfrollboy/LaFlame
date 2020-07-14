@@ -1,0 +1,38 @@
+{% extends 'base_page.html' %}
+{% block head %}
+<style>
+    input{
+        border:1px;
+    }
+</style>
+{% endblock head %}
+{% block body %}
+<div class='row mt-4'>
+    <div class ='col-5 offset-3'>
+        {% if error is not None %}
+            <div class="alert alert-danger" role="alert">
+                {{error}}
+            </div>
+        {% endif %}
+        <form action="{%url 'administration_url'%}" method="POST">
+            {% csrf_token %}
+            {% for field in form %}
+                <div class="form-group">
+                    {%if field.errors%}
+                        <div class="alert alert-danger">
+                            {{field.errors}}
+                        </div>
+                    {%endif%}
+                    {{field.label}}
+                    {{field}}
+                </div>
+            {% endfor %}
+            <button type='submit' class="btn btn-primary"> Connect </button>
+        </form>
+    </div>
+</div>
+{% endblock body %}
+{% block bottom %}
+{% endblock bottom %}
+{% block footer %}
+{% endblock footer %}

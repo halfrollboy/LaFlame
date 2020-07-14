@@ -1,0 +1,12 @@
+{% extends 'cabinet/base_cabinet.html' %}
+
+{% load static %}
+
+{% block cabinet_content %}
+    <br>
+    <h3 style='color:black; margin:10 px'>Расписание всех записей компании</h3>
+    <br>
+    {% include 'cabinet/includes/timetable.html' %}
+    <script src="{% static 'cabinet/js/scroll_1.js' %}"></script>
+
+{% endblock cabinet_content %}

@@ -1,0 +1,176 @@
+{%extends 'base_page.html'%}
+{%load static%}
+{% block head %}
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'flesh/css/cabinet.css' %}">
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>
+
+    <link rel="stylesheet" href="{% static 'flesh/css/new_style_scroll.css' %}">
+    <!--<link rel='stylesheet' href='https://opensource.keycdn.com/fontawesome/4.6.3/font-awesome.min.css'>-->
+{% endblock head %}
+{% block body %}
+
+    <div class='row no-gutters'>
+        <div class='col-3 bg-secondary d-none d-md-block' style='height:200vh;'>
+            <div class="list-group sticky-top" id="list-tab" role="tablist">
+                <a class="btn" id="list-profile-btn" style="color:white;" href="{% url 'company_detail_url' slug=company.slug%}" aria-controls="profile"><b>Мастер {{masters.name_m}}</b></a>
+                <a class="list-group-item list-group-item-action bg-secondary sticky-top" style="color:white;" id="list-message-list" data-toggle="list" href="#list-message" role="tab" aria-controls="clients">Заказы</a>
+                <a class="list-group-item list-group-item-action bg-secondary sticky-top" style="color:white;" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="clients">Профиль</a>
+                <a class="list-group-item list-group-item-action bg-secondary sticky-top" style="color:white;" id="list-chart-list" data-toggle="list" href="#list-chart" role="tab">График</a>
+            </div>
+        </div>
+
+        <div class='col-12 col-md-9'>
+            <div class="tab-content" id="nav-tabContent">
+                <div class="tab-pane fade show active" id="list-message" role="tabpanel">
+
+                    <div class='row'>
+                        <div class='col'></div>
+                        <div class='col-10'>
+                            <h3>Заказы</h3>
+                            <div class='row'>
+                                <div class='col-12'>
+                                    <div class="horizontal-scroll-wrapper squares area">
+                                        <div>item 1</div>
+                                        <div>item 2</div>
+                                        <div>item 3</div>
+                                        <div>item 4</div>
+                                        <div>item 5</div>
+                                        <div>item 6</div>
+                                        <div>item 7</div>
+                                        <div>item 8</div>
+                                        <div>item 9</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class='col'>
+                        <button id='button_prob',type="button" class="btn btn-danger">Главный</button>
+                        <div id="content"></div>
+                        <button id="showContent1">Показать контент 1</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade show" id="list-chart" role="tabpanel">
+                    <div class='row'>
+                        <div class='col'></div>
+                        <div class='col-10'>
+                        <br>
+                            <h3>Расписание </h3>
+                        </div>
+                        <div class='col'></div>
+                    </div>
+                    <div class='row'>
+                        <div class='col'>
+                            <div class="table-wrap">
+                                <div class="description">Данная панель ещё находится в разработке</div>
+                                <div class="right-wrap defaultscroll">
+                                    <div class="right-column"><div class="date-box">27.15.20</div>
+                                    <form class="form-select">
+                                        <div class='form_grup'>
+                                        <div class='box-date'>
+                                            <div class="form-row">
+                                            <div class="col">
+                                                <input class='form-input' type="text" id="email" required autocomplete="off" placeholder='Часы от'>
+                                            </div>
+                                            <b>:</b>
+                                            <div class="col">
+                                                <input class='form-input' type="text" id="email" required autocomplete="off" placeholder='Минуты от'>
+                                            </div>
+                                            <b>-</b>
+                                            <div class="col"> 
+                                                <input class='form-input' type="text" id="email" required autocomplete="off" placeholder='Часы до'>
+                                            </div>
+                                            <b>:</b>
+                                            <div class="col">
+                                                <input class='form-input' type="text" id="email" required autocomplete="off" placeholder='Минуты до'>
+                                            </div>
+                                            <!--<div class='col'>
+                                                <button class='btn_select_menu'>Ok</button>
+                                            </div>-->
+                                            </div>
+
+                                            <div class='row'>
+                                            <div class='col-2'></div>
+                                            <div class='col-8'>
+                                                <button class='btn_select_menu'>Кнопка нажатая</button>
+                                            </div>
+                                            <div class='col-2'></div>
+                                            </div>
+                                        </div>
+                                        </div>
+                                    </form>
+                                    <div class='zap-block'>
+                                        12:30  \  Стрижка <br>
+                                        Таран Юрий Петрович
+                                        89210607568
+                                    </div>
+                                    </div>
+                                    <div class="right-column"><div class="date-box">28.15.20</div> Нет записей </div>
+                                    <div class="right-column"><div class="date-box">29.15.20</div> Нет записей </div>
+                                    <div class="right-column"><div class="date-box">30.15.20</div> Нет записей </div>
+                                    <div class="right-column"><div class="date-box">31.15.20</div> Нет записей </div>
+                                </div>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade show" id="list-profile" role="tabpanel">
+                    <div class='row'>
+                        <div class='col'></div>
+                        <div class='col-10'>
+                        <br>
+                            <h3> Профиль </h3>
+                            <br>
+                            Выберите услуги, которые вы можете оказывать
+                            <div class="form-group">
+                                <select class="custom-select" required>
+                                <option value="">Open this select menu</option>
+                                <option value="1">One</option>
+                                <option value="2">Two</option>
+                                <option value="3">Three</option>
+                                </select>
+                                <div class="invalid-feedback">Example invalid custom select feedback</div>
+                            </div>
+                        </div>
+                        <div class='col'></div>
+                    </div>
+                </div>
+                {% comment %} <div class="tab-pane fade show" id="list-message" role="tabpanel" aria-labelledby="list-message-btn">
+                    <p><input class='calendar' type="date" name="calendar" value="2012-06-01" max="2012-06-04" min="2012-05-29"></p>
+                </div>
+                <div class="tab-pane fade show" id="list-masters" role="tabpanel" aria-labelledby="list-masters-btn">
+                    <p>Хало3</p>
+                </div> {% endcomment %}
+            </div>
+        </div>
+<div class="fixed-bottom">
+    <div class='row d-sm-block d-md-none h-50'>
+        <div class='col-12 bg-light p-2'>
+            <ul class="nav justify-content-around">
+                <li class="nav-item">
+                <img src="{%static 'flesh/svg/icon_masters.svg'%}" data-toggle="tab" href="#list-message" style="max-width:2rem;" class="card-img-top align-self-center" alt="No img">
+                </li>
+                <li class="nav-item">
+                    <img src="{%static 'flesh/svg/button_masters.svg'%}" data-toggle="tab" href="#list-chart" style="max-width:2rem;" class="card-img-top align-self-center" alt="No img">
+                </li>
+                <li class="nav-item">
+                    <img src="{%static 'flesh/svg/profile_masters.svg'%}" data-toggle="tab" href="#list-profile" style="max-width:2rem;" class="card-img-top align-self-center" alt="No img">
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script  src="{% static 'flesh/js/jquery-3.4.1.min.js' %}"></script>
+<script  src="{% static 'flesh/js/scroll_1.js' %}"></script>
+<script  src="{% static 'flesh/js/scroll.js' %}"></script>
+<script  src="{% static 'flesh/js/ajax_prob.js' %}"></script>
+
+
+{% endblock body %}
+
+{% block footer %}
+{% endblock footer %}
+
+

@@ -1,0 +1,43 @@
+{% extends 'flesh/base_hello.html' %}
+{% load static %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'flesh/css/style.css' %}" />
+{% endblock head %}
+
+{% block title %}
+    This hello page
+{% endblock title %}
+
+{%block content%}
+
+    <div class="row no-gutters h-100 justify-content-center align-items-center mt-3">
+        <div class='col'>
+            <div class="card border-0 ml-5" style=" max-width:18rem;">
+                <img src="{%static 'flesh/icons/calendar.png'%}" style="max-width: 6rem;" class="card-img-top align-self-center" alt="No img">
+                <div class="card-body">
+                    <h5 class="card-title ml-4">Удобный календарь</h5>
+                    <p class="card-text ml-4">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+            </div>
+        </div>
+        <div class='col'>
+            <div class="card border-0 ml-5" style=" max-width:18rem;">
+                <img src="{%static 'flesh/icons/star.png'%}" style="max-width:6rem;" class="card-img-top align-self-center" alt="No img">
+                <div class="card-body">
+                    <h5 class="card-title ml-5">Найдите лучшее</h5>
+                    <p class="card-text ml-4">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+            </div>
+        </div>
+        <div class='col'>
+            <div class="card border-0 ml-5 " style=" max-width:18rem;">
+                <img src="{%static 'flesh/icons/24hour.png'%}" style="max-width:6rem;" class="card-img-top align-self-center" alt="No img">
+                <div class="card-body">
+                    <h5 class="card-title ml-4">Запись в любое время</h5>
+                    <p class="card-text ml-4">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+{%endblock content%}

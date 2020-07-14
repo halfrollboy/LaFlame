@@ -1,0 +1,81 @@
+{%extends 'base_page.html'%}
+{%load static%}
+{% block head %}
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'cabinet/css/cabinet.css' %}">
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>
+    <link rel="stylesheet" href="{% static 'cabinet/css/new_style.css' %}">
+    <style>
+        form {
+            max-width: 40vw;
+            display: flex;
+            flex-direction: column;
+        }
+
+        form label {
+            font-family: "Open Sans", sans-serif;
+            font-size: 1.2rem;
+            margin-bottom: 12px;
+        }
+
+        form input {
+            height: 40px;
+            padding: 5px;
+            font-size: 1rem;
+        }
+
+        form input:focus {
+            outline: none;
+        }
+    </style>
+    <!--<link rel='stylesheet' href='https://opensource.keycdn.com/fontawesome/4.6.3/font-awesome.min.css'>-->
+{% endblock head %}
+{% block body %}
+<div class="main_bg bg-secondary">
+    <div class='row no-gutters'>
+        <div class='col-3 bg-secondary d-none d-md-block sticky-top' style='height:100vh;'>
+            <!--<div class="list-group sticky-top" id="list-tab" role="tablist">-->
+            <a class="btn" id="list-profile-btn" style="color:white;" href="{% url 'company_detail_url' slug=company.slug%}" aria-controls="profile"><b>Мастер {{masters.name_m}}</b></a>
+            <a class="list-group-item list-group-item-action bg-secondary sticky-top border-0" style="color:white; width:100%;" id="master_orders" data-toggle="list" type="button" href="#list-message" role="tab" aria-controls="clients">Заказы</a>
+            <a class="list-group-item list-group-item-action bg-secondary sticky-top border-0" style="color:white;" id="master_profile" data-toggle="list" href="#list-profile" role="tab" aria-controls="clients">Профиль</a>
+            <a class="list-group-item list-group-item-action bg-secondary sticky-top border-0" style="color:white;" id="master_timetable" data-toggle="list" href="#list-chart" role="tab">График</a>
+            <!--</div>-->
+        </div>
+
+        <div class='col-12 col-md-9 bg-white' id='main_roomspace'>
+            <div class='col-1'></div>
+            <div class='col-10'>
+                <div id="content"></div>
+            </div>
+            <div class='col-1'></div>
+        </div>
+    </div>
+</div>
+<div class="fixed-bottom">
+    <div class='row d-sm-block d-md-none h-50'>
+        <div class='col-12 bg-light p-2'>
+            <ul class="nav justify-content-around">
+                <li class="nav-item">
+                <img src="{%static 'flesh/svg/icon_masters.svg'%}" data-toggle="tab" href="#list-message" style="max-width:2rem;" class="card-img-top align-self-center" alt="No img">
+                </li>
+                <li class="nav-item">
+                    <img src="{%static 'flesh/svg/button_masters.svg'%}" data-toggle="tab" href="#list-chart" style="max-width:2rem;" class="card-img-top align-self-center" alt="No img">
+                </li>
+                <li class="nav-item">
+                    <img src="{%static 'flesh/svg/profile_masters.svg'%}" data-toggle="tab" href="#list-profile" style="max-width:2rem;" class="card-img-top align-self-center" alt="No img">
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script  src="{% static 'cabinet/jquery-3.4.1/jquery-3.4.1.min.js' %}"></script>
+<script  src="{% static 'cabinet/js/main_menu_one_OrderTab.js' %}"></script>
+<script  src="{% static 'cabinet/js/scroll_1.js' %}"></script>
+<script  src="{% static 'cabinet/js/scroll.js' %}"></script>
+<script  src="{% static 'cabinet/js/ajax_prob.js' %}"></script>
+<script>$('#content').load("{% url 'cabinet:timetable' %}?content=");</script>
+
+{% endblock body %}
+{% block footer %}
+{% endblock footer %}

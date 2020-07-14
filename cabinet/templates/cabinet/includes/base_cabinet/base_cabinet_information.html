@@ -1,0 +1,26 @@
+{% extends 'cabinet/base_cabinet.html' %}
+
+{% block cabinet_content %}
+<div class="tab-pane fade show active" id="list-profile" role="tabpanel">
+    <div class ='row'>
+        <div class='col-1'></div>
+        <div class='col-10'>
+            {% block activ_cabinet_block %}
+                {% if request.user.email %}
+                    <h3>Удачного дня!</h3><br>
+                    <h2>{{company.name}}</h2><br>
+                {% else %}
+                        <div class="jumbotron jumbotron-fluid mt-3">
+                            <div class="container">
+                                <h1 class="display-4">Внимание!</h1>
+                                    <p class="lead">Мы рады, что вы присоединились к нашему сайту. Теперь вам следует ввести свою электронную почту и разместить мастеров и их портфолио на сайте.</p>
+                            </div>
+                        </div>
+                {% endif %}
+            {% endblock activ_cabinet_block %}
+        </div>
+        <div class='col-1'></div>
+    </div>
+</div>
+
+{% endblock cabinet_content %}

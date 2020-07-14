@@ -1,0 +1,88 @@
+ <br><h5>Информация о компании "<b>{{company_description.name}}</b>"<br></h5><br>
+        <a href="#" id="main">
+            <div id="okno">
+                Всплывающее окошко!
+            </div>
+        </a>
+        <a href="#main">Вызвать всплывающее окно</a>
+        <div class='container'>
+            <a href='#x' class='overlay' id='win1'></a>
+            <div class='popup'>
+                <p style='text-align:center;'>Text for example</p>
+                <a class='close' title='Закрыть' href='#close'></a><!--TODO  убрать абсолютное значение для полей-->
+            </div>
+        </div>
+        <a href='#win1' class='button-green'>"Открыть окно 1"</a>
+        <!--<div class="b-container">
+            Sample Text
+            </div>
+            <div class="b-popup">
+                <div class="b-popup-content">
+                    Text in Popup
+                </div>
+            </div>-->
+        <form class='company_description1' id='company_description1' method="POST">
+            {% csrf_token %}
+            {% for field in companyform %}
+                <div class="form-group">
+                    {%if field.errors%}
+                        <div class="alert alert-danger">
+                            {{field.errors}}
+                        </div>
+                    {%endif%}
+                    {{field.label}}
+                    {{field}}
+                </div>
+            {% endfor %}
+            <br>
+            Новая хуйня TODO проверить отправляются ли поля новой формы вместе со всеми
+            {% for fil in prob_form %}
+                <br>
+                {{fil.label}}
+                {{fil}}
+            {% endfor %}
+            <br>
+            <button type='submit' class="btn btn-primary"> Сохранить изменения </button>
+            <p> не забывайте сохранять изменения </p>
+        </form>
+        <!-- __________________________________________________________________-->
+        {% comment %} <form id='company_decription' method="POST">
+            {% csrf_token %}
+            {% for fields in  %}{% endfor %}
+            <button type='submit' class="btn btn-primary"> Сохранить отредактированные данные компании </button>
+        </form> {% endcomment %}
+        <!-- __________________________________________________________________-->
+
+
+
+        <div class="collapse" id="collapseExample">
+            <div class="card card-body">
+                <div class="alert alert-danger" role="alert" id='error_m' hidden>
+                    <div class='errors_floor' id='errors'>
+                        Возникли проблемы при отправке формы, проверьте введенные данные.
+                    </div>
+                </div>
+                <p class='text-muted'>Чтобы создать улугу, выберите её из существующих или запишите свою. При записи своей улуги она станет видна для других компаний в выборе услуг. Поэтому старайтесь написать её без ошибок. Именно по вашей записи пользователь будет её искать</p>
+                <p>Заметим, что улуги компаний модерируются.</p>
+                Выберите услугу<br>
+
+                <input class='border rounded form-control' list="12" id="1" name="myHouse" placeholder="Услуга" />
+                <datalist id="12">
+                    <option value="Gryfindor">
+                    <option value="Hufflepuff">
+                    <option value="Slytherin">
+                    <option value="Ravenclaw">
+                    <option value="Horned Serpent">
+                    <option value="Thunderbird">
+                    <option value="Pukwudgie">
+                    <option value="Wampus">
+                </datalist><br>
+
+                Сколько времени длиться услуга<br>
+                <input type='time' class="form-control" id="numberMaster"><br>
+                Стоимость вашей услуги<br>
+                <input class="form-control" id="nameMaster" placeholder="₽">
+                <br><p><button class="btn btn-success getres" >Создать</button></p>
+                <!--id='{{company.slug}}' onclick="return create_masters(this.id);"-->
+            </div>
+        </div>

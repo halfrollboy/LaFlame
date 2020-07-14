@@ -1,0 +1,18 @@
+{% extends 'base_page.html' %}
+
+{% block title %}
+    Tag Create - {{block.super}}
+{% endblock title %}
+
+{% block content %}
+
+    <from action="{%url 'company_create_url'%}" method="post">
+        {% csrf_token %}
+        {{form.name}}
+        {{form.slug}}
+
+        <button type="submit" class="btn btn-primary">Create comp</button>
+    </from>
+
+
+{% endblock content %}

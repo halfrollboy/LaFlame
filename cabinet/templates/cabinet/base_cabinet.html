@@ -1,0 +1,65 @@
+{%extends 'base_page.html'%}
+{%load static%}
+{% block head %}
+
+    <link rel="stylesheet" href="{% static 'cabinet/css/cabinet.css' %}">
+    <link rel="stylesheet" href="{% static 'cabinet/css/closer.css' %}">
+    <!--<link rel="stylesheet" href="{% static 'cabinet/css/modal_window.css' %}">-->
+    <link rel="stylesheet" href="{% static 'cabinet/css/modal_window2.css' %}">
+    <link rel="stylesheet" href="{% static 'cabinet/css/new_style.css' %}">
+
+{% csrf_token %}
+{% endblock head %}
+{% block body %}
+    {% csrf_token %}
+    <div class="main_bg bg-secondary">
+    <div class='row no-gutters'>
+        <div class='col-3 bg-secondary d-none d-md-block sticky-top' style='height:100vh;'>
+            <div class="list-group sticky-top" id="list-tab" role="tablist">
+                <a class="btn" id="list-profile-btn" style="color:white;" href="{% url 'company_detail_url' slug=company.slug %}" aria-controls="profile"><b>Компания {{company.name}}</b></a> 
+                <a class=" btn list-group-item list-group-item-action bg-secondary border-0" style="color:white;" id="list-profile-list" role="tab" href="{% url 'cabinet:base_information_new' slug=company.slug%}" aria-controls="clients">Информация </a> 
+                <a class="list-group-item list-group-item-action bg-secondary border-0" style="color:white;" id="list-messages-list" role="tab" href="{% url 'cabinet:base_company_orders_new' slug=company.slug%}" aria-controls="clients">Заказы <span class="badge badge-light">15</span></a>
+                <a class="list-group-item list-group-item-action bg-secondary border-0" style="color:white;" id="list-masters-list" role="tab" href="{% url 'cabinet:base_company_masters_new' slug=company.slug%}" aria-controls="masters">Мастера</a>
+                <a class="list-group-item list-group-item-action bg-secondary border-0" style="color:white;" id="list-foto-list"  role="tab" href="{% url 'cabinet:base_company_foto_new' slug=company.slug%}" aria-controls="foto">Фото компании</a>
+                <a class="list-group-item list-group-item-action bg-secondary border-0" style="color:white;" id="list-description-list" role="tab" href="{% url 'cabinet:base_company_description_new' slug=company.slug%}" aria-controls="description">Описание компании</a>
+            </div>
+        </div>
+
+        <div class='col-12 col-md-9 bg-white'>
+            <div class='content ' id='content'>
+                {% block cabinet_content %}
+                {% endblock cabinet_content %}
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <div class="fixed-bottom">
+        <div class='row d-sm-block d-md-none h-50'>
+            <div class='col-12 bg-light'>
+                <ul class="nav justify-content-around">
+                    <li class="nav-item">
+                    <img src="{%static 'flesh/svg/image.svg'%}" data-toggle="tab" href="#list-profile" style="max-width:2rem;" class="card-img-top align-self-center" alt="No img">
+                    </li>
+                    <li class="nav-item">
+                        <img src="{%static 'flesh/svg/master.svg'%}" data-toggle="tab" href="#list-masters" style="max-width:2rem;" class="card-img-top align-self-center" alt="No img">
+                    </li>
+                    <li class="nav-item">
+                        <img src="{%static 'flesh/svg/message.svg'%}" style="max-width:2rem;" class="card-img-top align-self-center" alt="No img">
+                    </li>
+                    <li class="nav-item">
+                        <img src="{%static 'flesh/svg/description.svg'%}" style="max-width:2rem;" class="card-img-top align-self-center" alt="No img">
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+<script src="{% static 'cabinet/jquery-3.4.1/jquery-3.4.1.min.js' %}"></script>
+<!--<script>$('#content').load("{% url 'cabinet:base_information' %}?content=");</script>-->
+<script src="{% static 'cabinet/js/base_cabinet.js' %}"></script>
+<script src="{% static 'cabinet/js/scroll_1.js' %}"></script>
+
+{% endblock body %}
+{% block footer %}
+{% endblock footer %}

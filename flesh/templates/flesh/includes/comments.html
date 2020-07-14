@@ -1,0 +1,44 @@
+<!--TODO переписать форму коментариев красиво-->
+    {% with comments.count as total_comments%}
+      <h3>{{total_comments}} Comment{{total_comments|pluralize}}</h3>
+    {% endwith %}
+
+    {% for comment in comments %}
+    <div class='comment'>
+      <p class='info'>
+        Commet{{forloop.counter}} by{{comment.name}}
+        {{comment.reviews}}
+      </p>
+    </div>
+    {%empty%}
+    <p>Здесь пока нет комментариев.</p>
+    {% endfor %}
+
+    <div class=''>
+    {% if new_comment %}
+      <h3>Ваш комментарий создан и проходит модерацию</h3>
+    {% else %}
+    <div class='bg-light rounded-top rounded-bottom'>
+      <div class='row'>
+        <div class='col-1'></div>
+        <div class='col-10'>
+          <br>
+          <h3> Оставьте комментарий</h3>
+          <form method="POST">
+            <div class='row'>
+              {% if erors_m %}
+                {{erors_m}}
+              {% endif %}
+              <div class='col-6'>Введите имя</div><div class='col-6'>Введите номер</div>
+              <div class='col-6'>{{comments_form.name}}</div><div class='col-6'>{{comments_form.number}}</div>
+              <div class='col-12'>Оставьте ваш отзыв</div>
+              <div class='col-12'>{{comments_form.reviews}}</div>
+            </div>
+          </form>
+          <br>
+          </div>
+          <div class='col-1'></div>
+      </div>
+    </div>
+    {% endif %}
+    </div>

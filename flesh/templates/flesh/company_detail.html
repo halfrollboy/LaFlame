@@ -1,0 +1,49 @@
+{% extends 'base_page.html' %}
+{% load staticfiles %}
+
+{% block head %}
+  <link rel="stylesheet" href="{% static 'flesh/css/horizontal_scrol.css' %}" />
+  <!--<link rel="stylesheet" href="{%static 'flesh/css/comments.css'%}"-->
+{% endblock head %}
+
+{% block opacitynav %}
+opacity:0.9;
+{% endblock opacitynav %}
+
+{% block colornav %} 
+    bg-warning
+{% endblock colornav %} 
+
+
+{% block body %}
+<div class="container text-center my-2 mt-4">
+    <h3>Компания {{company.name}}</h3>
+</div>
+<br>
+{% include 'flesh/includes/orders_floor.html' %}
+
+
+<div class='row'>
+  <div class='col-1'></div>
+  <div class='col-10'>
+    {% include 'flesh/includes/comments.html' %}
+  </div>
+  <div class='col-1'></div>
+</div>
+
+<script>
+  $('.multi-carousel .carousel-item').each(function() {
+    var next = $(this).next();
+    if (!next.length) next = $(this).siblings(':first');
+    next.children(':first-child').clone().appendTo($(this));
+  });
+  $('.multi-carousel .carousel-item').each(function() {
+    var prev = $(this).prev();
+    if (!prev.length) prev = $(this).siblings(':last');
+    prev.children(':nth-last-child(2)').clone().prependTo($(this));
+  });
+</script>
+<script src="{% static 'flesh/js/detail_scripts.js' %}"></script>
+{% endblock body %} 
+{% block footer %}
+{% endblock footer %}

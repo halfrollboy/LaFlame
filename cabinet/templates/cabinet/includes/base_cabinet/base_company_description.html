@@ -1,0 +1,60 @@
+{% extends 'cabinet/base_cabinet.html' %}
+{% block cabinet_content %}
+
+<div class='row'>
+    <div class='col-1'></div>
+    <div class='col-10'>
+        <h3 style='color:black;'>Услуги вашей компании:</h3><br>
+        <p>
+            <a class="btn btn-success" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                Создать новую услугу компании
+            </a>
+        </p>
+        <div class="collapse" id="collapseExample">
+            <div class="card card-body">
+                <div class="alert alert-danger" role="alert" id='error_m' hidden>
+                    <div class='errors_floor' id='errors'>
+                        Возникли проблемы при отправке формы, проверьте введенные данные.
+                    </div>
+                </div>
+                <p class='text-muted'>Чтобы создать улугу, выберите её из существующих или запишите свою. При записи своей улуги она станет видна для других компаний в выборе услуг. Поэтому старайтесь написать её без ошибок. Именно по вашей записи пользователь будет её искать</p>
+                <p>Заметим, что улуги компаний модерируются.</p>
+                Выберите услугу<br>
+                
+                <input class='border rounded form-control' list="12" id="operations_create" name="myHouse" placeholder="Услуга" />
+                <datalist id="12">
+                    {% for operation in operations %}
+                        <option value="{{operation.name_operations}}">
+                    {% endfor %}
+                </datalist><br>
+                <p><button class="btn btn-success getres" id='{{company.slug}}' onclick="return create_operation(this.id);">Создать</button></p>
+               
+            </div>
+        </div>
+        <br>
+    {% if servises %}
+        
+    {% else %}   
+    <h4>
+        Пожалуйста добавьте услуги предоставляемые компанией !<br>
+        Сейчас таблица пуста
+    </h4>
+    {% endif %}
+
+    <table class='table_operations' id='table_operations' border="1" style='width:100%' align="center" cellspacing="5" cellpadding="10" border="1">
+        <caption>Мастера могут уточнить услуги, задать им цены, время и описание. Перейдите в кабинет мастера</caption>
+        <tr>
+            <th>Услуги компании</th>
+        </tr>
+        {% for servis in servises %}
+            <tr><td style="padding: 10px;">{{servis.name_operations}}</td></tr>
+        {% endfor %}
+    </table> 
+
+      
+
+    </div>
+    <div class='col-1'></div>
+</div>
+</div>
+{% endblock cabinet_content %}

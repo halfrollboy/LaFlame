@@ -1,0 +1,72 @@
+{% extends 'base_page.html' %}
+
+{% load static %} 
+
+{% block head %}
+<style>
+form input:focus {
+	outline: none;
+    border: 2px solid white;
+}
+</style>
+{% endblock head %}
+
+{% block body %}
+    {% comment %} <link rel="stylesheet" href="{% static 'flesh/css/selector.css' %}"> {% endcomment %}
+    {% comment %} <div class='row d-sm-block d-md-none'>
+    </div> {% endcomment %}
+    <div class="row no-gutters">
+        <div class="col col-md-4 bg-warning text-white">
+            <div class="col col-md-12 mt-3 mb-3 ">
+                    <form>
+                        <div class='form-group row'>
+                            <div class='col-12'>
+                                <input class='border-0 rounded text-left p-2' style='width:100%; input:focus: border: 2px solid white;' list="uslugi" id="myHouse" name="uslugi" placeholder="Выберите услугу" />
+                                    <datalist id="uslugi" style='width:100%;'>
+                                        <option value="Стрижка мужская">
+                                        <option value="Стрижка женская">
+                                        <option value="Шугаргинг">
+                                        <option value="Подровнять кончики">
+                                        <option value="Массаж">
+                                        <option value="_______">
+                                    </datalist>
+                            </div>
+                        </div>
+                        <div class='form-group row'>
+                            <div class="col-6 ">
+                                <input class="form-control shadow bg-white border-0 " type="date" name="calendar" value="2020-06-01" min="2019-12-12">
+                            </div>
+                            <div class="col-6 ">
+                                <input class="form-control shadow bg-white border-0 " type="date" name="calendar" min="2019-12-12">
+                            </div>
+                        </div>
+                        <div class='form-group row '>
+                            <div class="col-6 ">
+                                <input type="time" class="form-control shadow bg-white border-0 ">
+                            </div>
+                            <div class="col-6 ">
+                                <input type="time" class="form-control shadow bg-white border-top-0 border border-2 ml-0" placeholder="Время до">
+                            </div>
+                            <div class='col-12 mt-3'>
+                                <a href="{%url 'company_list_url'%}" class="btn btn-info btn-lg btn-block rounded-pill" role="button" aria-pressed="true">Подобрать</a>
+                            </div>
+                        </div>
+                    </form>
+            </div>
+        </div>
+
+        <div class="col-md-8 d-none d-md-block">
+            <figure>
+                <img class="edge picture1" src="{%static 'flesh/images/fon_new_color.png'%}" alt='No image'>
+                <div style='position: absolute; right: 20%; bottom:10%;'><p><h2>La'flame</h2>
+                <h4>Арегатор салонов красоты</h4><div></p>
+            </figure>
+                <img class='hlam' src="{%static 'flesh/images/bab.png'%}" alt='Image eror 404 pls reload'>
+        </div>
+    </div>
+{% endblock body %}
+
+{%block content%} 
+{%endblock content%}
+
+

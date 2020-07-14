@@ -1,0 +1,222 @@
+h3{
+    color:wheat;
+}
+
+#x{
+    position: fixed;
+    width:200px;
+    left: 0;
+    right:0;
+    bottom:0;
+}
+
+hr {
+ border: none; /* Убираем границу */
+ background-color: rgb(150, 171, 192); /* Цвет линии */
+ color: grey; /* Цвет линии для IE6-7 */
+ height: 2px; /* Толщина линии */
+}
+
+.whitetextmenu{
+	color: white;
+}
+
+/* Эффект 12: круг на фоне */
+.cl-effect-12 a::before,
+.cl-effect-12 a::after {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 100px;
+	height: 100px;
+	border: 2px solid rgba(0,0,0,0.1);
+	border-radius: 50%;
+	content: '';
+	opacity: 0;
+	-webkit-transition: -webkit-transform 0.3s, opacity 0.3s;
+	-moz-transition: -moz-transform 0.3s, opacity 0.3s;
+	transition: transform 0.3s, opacity 0.3s;
+	-webkit-transform: translateX(-50%) translateY(-50%) scale(0.2);
+	-moz-transform: translateX(-50%) translateY(-50%) scale(0.2);
+	transform: translateX(-50%) translateY(-50%) scale(0.2);
+}
+
+.cl-effect-12 a::after {
+	width: 90px;
+	height: 90px;
+	border-width: 6px;
+	-webkit-transform: translateX(-50%) translateY(-50%) scale(0.8);
+	-moz-transform: translateX(-50%) translateY(-50%) scale(0.8);
+	transform: translateX(-50%) translateY(-50%) scale(0.8);
+}
+
+.cl-effect-12 a:hover::before,
+.cl-effect-12 a:hover::after,
+.cl-effect-12 a:focus::before,
+.cl-effect-12 a:focus::after {
+	opacity: 1;
+	-webkit-transform: translateX(-50%) translateY(-50%) scale(1);
+	-moz-transform: translateX(-50%) translateY(-50%) scale(1);
+	transform: translateX(-50%) translateY(-50%) scale(1);
+}
+
+.box_table{
+	-webkit-box-sizing: content-box;
+	-moz-box-sizing: content-box;
+	box-sizing: content-box;
+	width: 160px;
+	padding: 20px;
+	overflow: hidden;
+	border: 2px solid rgba(255,0,0,1);
+	-webkit-border-radius: 2px 11px;
+	border-radius: 2px 11px;
+	font: normal 16px/1 "Times New Roman", Times, serif;
+	color: rgba(0,0,0,1);
+	text-align: center;
+	-o-text-overflow: ellipsis;
+	text-overflow: ellipsis;
+	background: #ffffff;
+	text-shadow: 1px 1px 1px rgba(0,0,0,0.2) ;
+}
+
+.table{
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  width: 160px;
+  padding: 20px 40px 256px 20px;
+  overflow: hidden;
+  border: 2px solid;
+  font: normal 16px/1 "Times New Roman", Times, serif;
+  color: rgba(0,0,0,1);
+  text-align: center;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  background: #ffffff;
+  text-shadow: 1px 1px 1px rgba(0,0,0,0.2) ;
+}
+
+.tower{
+	border: 2px;
+	height: 100%;
+	border-color: rgb(12, 12, 12);
+	text-align: center;
+}
+
+.tower-header{
+	height: 40px;
+	background-color: #abc;
+	text-align: center;
+	font-size: 120%;
+	font-weight: bolder;
+	font-family: Helvetica;
+}
+
+.area {
+	padding: 1rem;
+	background: white;
+	height: 250px;
+	overflow: auto;
+}
+
+::-webkit-scrollbar {
+	width: 1px;
+	height: 1px; }
+  
+  ::-webkit-scrollbar-button {
+	width: 1px;
+	height: 1px; }
+  
+   
+  .horizontal-scroll-wrapper {
+	position: absolute;
+	display: block;
+	top: 0;
+	left: 0;
+	width: calc(250px + 1px);
+	max-height: 750px;
+	margin: 0;
+	padding-top: 1px;
+	background: #abc;
+	overflow-y: auto;
+	overflow-x: hidden;
+	transform: rotate(-90deg) translateY(-250px);
+	transform-origin: right top; }
+	.horizontal-scroll-wrapper > div {
+	  display: block;
+	  padding: 5px;
+	  background: #cab;
+	  transform: rotate(90deg);
+	  transform-origin: right top; }
+   
+  .squares {
+	padding: 250px 0 0 0; }
+	.squares > div {
+	  width: 250px;
+	  height: 250px;
+	  margin: 10px 0; }
+  
+
+
+
+.card1 {
+	background-color: rgb(116, 134, 218);
+	min-width: 100%;
+	min-height: 550px;
+	overflow-x: auto;
+}
+
+.card1--content {
+	background-color: #e74c3c;
+	min-width: 200px;
+	margin: 5px;
+}
+
+.slide {
+	width: 20vw;
+	height: 100vh;
+}
+
+.wrapper {
+	display: flex;
+	flex-direction: row;
+	width: 2000vw;  
+	transform: rotate(90deg) translateY(-100vh);
+	transform-origin: top left;
+}
+
+.outer-wrapper { 
+	width: 100vh;
+	height: 100vw;
+	transform: rotate(-90deg) translateX(-100vh);
+	transform-origin: top left;
+	overflow-y: scroll;
+	overflow-x: hidden;
+	position: absolute;
+	scrollbar-width: none;
+	-ms-overflow-style: none;
+  }
+  
+  ::-webkit-scrollbar {
+	display:none;
+  }
+  
+  .one {
+	background: #efdefe;
+  }
+
+  .two {
+	background: #a3f3d3;
+  }
+  .three {
+	background: #0bbaa0;
+  }
+  .four {
+	background: #00dfdf;
+  }
+  
+.statistics{
+	display: flex;
+	align-items: center;
+	justify-content: center
+}

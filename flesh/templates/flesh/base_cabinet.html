@@ -1,0 +1,177 @@
+{%extends 'base_page.html'%}
+{%load static%}
+{% block head %}
+
+    <link rel="stylesheet" href="{% static 'flesh/css/cabinet.css' %}">
+
+{% endblock head %}
+{% block body %}
+
+    <div class='row no-gutters'>
+        <div class='col-3 bg-secondary d-none d-md-block' style='height:100vh;'>
+            <div class="list-group sticky-top" id="list-tab" role="tablist">
+                <a class="btn" id="list-profile-btn" style="color:white;" href="{% url 'company_detail_url' slug=company.slug %}" aria-controls="profile"><b>Компания {{company.name}}</b></a>
+                <a class="list-group-item list-group-item-action bg-secondary" style="color:white;" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="clients">Информация </a>
+                <a class="list-group-item list-group-item-action bg-secondary" style="color:white;" id="list-messages-list" data-toggle="list" href="#list-message" role="tab" aria-controls="clients">Заказы <span class="badge badge-light">15</span></a>
+                <a class="list-group-item list-group-item-action bg-secondary" style="color:white;" id="list-masters-list" data-toggle="list" href="#list-masters" role="tab" aria-controls="masters">Мастера</a>
+                <a class="list-group-item list-group-item-action bg-secondary" style="color:white;" id="list-foto-list" data-toggle="list" href="#list-foto" role="tab" aria-controls="foto">Фото компании</a>
+                <a class="list-group-item list-group-item-action bg-secondary" style="color:white;" id="list-description-list" data-toggle="list" href="#list-description" role="tab" aria-controls="description">Описание компании</a>
+            </div>
+        </div>
+
+        <div class='col-12 col-md-9'>
+            <div class="tab-content" id="nav-tabContent">
+                <div class="tab-pane fade show active" id="list-profile" role="tabpanel">
+                    {% block activ_cabinet_block %}
+                        {% if request.user.email %}
+                            <h3>Удачного дня!</h3>
+                        {% else %}
+                            <div class ='row'>
+                                <div class='col-1'>
+                                </div>
+                                <div class='col-10'>
+                                    <div class="jumbotron jumbotron-fluid mt-3">
+                                        <div class="container">
+                                            <h1 class="display-4">Внимание!</h1>
+                                            <p class="lead">Мы рады, что вы присоединились к нашему сайту. Теперь вам следует ввести свою электронную почту и разместить мастеров и их портфолио на сайте.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class='col-1'>
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endblock activ_cabinet_block %}
+                </div>
+
+                <div class="tab-pane fade show" id="list-messages" role="tabpanel" aria-labelledby="list-messages-btn">
+                    <p><input class='calendar' type="date" name="calendar" value="2012-06-01" max="2012-06-04" min="2012-05-29"></p>
+                        {% if masters is None %}
+                            Для того чтобы здесь появилась информация надо создать мастеров и добавить им расписание
+                        {% endif %}
+                </div>
+                <div class="tab-pane fade show" id="list-masters" role="tabpanel" aria-labelledby="list-masters-btn">
+                    <div class='row'>
+                        <div class='col-1'></div>
+                        <div class='col-10'>
+                            <br>
+                            <p>
+                                <a class="btn btn-success" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                    Создать нового мастера 
+                                </a>
+                                <br>
+                                <a class="btn" id='delete_masters'>
+                                    Удаление мастеров
+                                </a>
+                                {% comment %} <button class="btn btn-success" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                                    Кнопка с data-target
+                                </button> {% endcomment %}
+                            </p>
+                            <div class="collapse" id="collapseExample">
+                                <div class="card card-body">
+                                    {% if erors_m is not None %}
+                                        <div class="alert alert-danger" role="alert">
+                                            {{erors_m}}
+                                        </div>
+                                    {% endif %}
+                                    <form id='create_master' method="POST" >
+                                        {% csrf_token %} {{ mastersform.as_p }} 
+                                        <br><p><button type='submit' name="createmasters" class="btn btn-success">Создать</button></p>
+                                        {% comment %} <p><input type="submit"  value="Send Question" /></p> {% endcomment %}
+                                    </form>
+                                    {% comment %} <a href="{% url 'cabinet_company_url' %}" class="btn btn-success" role="button" aria-pressed="true">Создать мастера</a> {% endcomment %}
+                                </div>
+                            </div>
+                            {% comment %} <div class='row'><div class='col-12'><button type="button" class="btn btn-success">Создать нового мастера</button></div></div>
+                            <a href="{% url 'cabinet_masters_company_url' slug=''%}" class="btn btn-success btn-block" role="button" aria-pressed="true">Создать мастера</a> {% endcomment %}
+                            {% if masters is not None %}
+                                {% for master in masters %}
+                                    <div class='row'>
+                                        <div class='col-4'></div>
+                                        <div class='col-4'></div>
+                                        <div class='col-4'>
+                                            {% comment %} <button type="button" class="btn btn-outline-secondary">{{master.name_m}}</button><br> {% endcomment %}
+                                            <a href="{% url 'cabinet_masters_company_url' slug=master.slug%}" class="btn btn-outline-secondary btn-lg" role="button" aria-pressed="true">{{master.name_m}}</a>
+                                            <p> </p>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+                        <div class='col-1'></div>
+                    </div>
+                </div>
+                <div class="tab-pane fade show" id="list-foto" role="tabpanel" aria-labelledby="list-foto-btn">
+                    <div class='row'>
+                        <div class='col-1'></div>
+                        <div class='col-10'>
+                            <p>Редактирование основной информации</p>
+                            {% comment %} <form method='POST' action="{url 'cabinet_company_url'}"> {% endcomment %}
+                            <form method='POST' action="{url 'cabinet_company_url'}">
+                                {% csrf_token %} {{ mastersform.as_p }} 
+                                <input type="submit" value="Сохранить изменение" />
+                            </form>
+                            <p>Редактирование фотографий</p>
+                            <form class='fotoform' id='name_company'>
+                                {% csrf_token %} {{ fotoform }} <input type="submit" name="editfoto" value="Сохранить изменение" />
+                            </form>
+                        </div>
+                        <div class='col-1'></div>
+                    </div>
+                </div>
+                <div class="tab-pane fade show" id="list-description" role="tabpanel" aria-labelledby="list-description-btn">
+                    <div class='row'>
+                        <div class='col-1'></div>
+                        <div class='col-10'>
+                            <br><h5>Компания <b>{{company.name}}</b><br></h5><br>
+                            <form class='company_description' id='company_description'>
+                                {% csrf_token %}
+                                {% for field in companyform %}
+                                    <div class="form-group">
+                                        {%if field.errors%}
+                                            <div class="alert alert-danger">
+                                                {{field.errors}}
+                                            </div>
+                                        {%endif%}
+                                        {{field.label}}
+                                        {{field}}
+                                    </div>
+                                {% endfor %}
+                                <button type='submit' class="btn btn-primary"> Сохранить изменения </button>
+                            </form>
+                        </div>
+                        <div class='col-1'></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<div class="fixed-bottom">
+    <div class='row d-sm-block d-md-none h-50'>
+        <div class='col-12 bg-light p-2'>
+            <ul class="nav justify-content-around">
+                <li class="nav-item">
+                <img src="{%static 'flesh/svg/image.svg'%}" data-toggle="tab" href="#list-profile" style="max-width:2rem;" class="card-img-top align-self-center" alt="No img">
+                </li>
+                <li class="nav-item">
+                    <img src="{%static 'flesh/svg/master.svg'%}" data-toggle="tab" href="#list-masters" style="max-width:2rem;" class="card-img-top align-self-center" alt="No img">
+                </li>
+                <li class="nav-item">
+                    <img src="{%static 'flesh/svg/message.svg'%}" style="max-width:2rem;" class="card-img-top align-self-center" alt="No img">
+                </li>
+                <li class="nav-item">
+                    <img src="{%static 'flesh/svg/description.svg'%}" style="max-width:2rem;" class="card-img-top align-self-center" alt="No img">
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+{% endblock body %}
+
+{% block footer %}
+{% endblock footer %}
+
+
